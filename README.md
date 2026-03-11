@@ -26,7 +26,6 @@ Over time, developers accumulate a graveyard of globally installed packages that
 | **pip** | `pip list` | `pip uninstall -y <pkg>` |
 | **cargo** | `cargo install --list` | `cargo uninstall <pkg>` |
 | **gem** | `gem list` | `gem uninstall <pkg>` |
-| **conda** | `conda list -n base` | `conda remove -n base <pkg>` |
 
 ---
 
@@ -50,8 +49,6 @@ Over time, developers accumulate a graveyard of globally installed packages that
 
 ---
 
-## Getting Started
-
 ### Prerequisites
 
 - Python 3.11 or higher
@@ -65,15 +62,6 @@ cd gobble
 pip install -r requirements.txt
 python main.py
 ```
-
-### Build a standalone executable
-
-```bash
-pip install pyinstaller
-pyinstaller gobble.spec
-```
-
-The output will be in `dist/gobble/`. Distribute just that folder or use `--onefile` for a single `.exe`/binary.
 
 ---
 
@@ -92,51 +80,30 @@ The output will be in `dist/gobble/`. Distribute just that folder or use `--onef
 
 ```
 gobble/
-├── main.py                  # Entry point
-├── requirements.txt         # Runtime dependencies
-├── gobble.spec              # PyInstaller build config
+├── main.py
+├── requirements.txt
+├── gobble.spec
+├── protected.json
 ├── assets/
-│   └── icon.ico             # App icon
+│   ├── gobbleicon.ico
+│   ├── gobbleicon.png
+│   ├── gobble_theme.json
+│   └── fonts/
 └── src/
-    ├── app.py               # Main GUI window (CustomTkinter)
-    ├── uninstaller.py       # Runs uninstall commands asynchronously
+    ├── app.py
+    ├── uninstaller.py
+    ├── cache.py
+    ├── protected.py
+    ├── font_loader.py
+    ├── version.py
     └── detectors/
-        ├── base.py          # Abstract base class for detectors
-        ├── npm.py           # npm global package detector
-        ├── pip.py           # pip global package detector
-        ├── cargo.py         # cargo installed binaries detector
-        └── gem.py           # Ruby gem detector
+        ├── base.py
+        ├── process.py
+        ├── npm.py
+        ├── pip.py
+        ├── cargo.py
+        └── gem.py
 ```
-
----
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature/add-pnpm-detector`
-3. Add your detector in `src/detectors/` following the pattern in `base.py`
-4. Submit a pull request
-
-### Adding a new package manager detector
-
-Create a new file in `src/detectors/` that extends `BaseDetector`:
-
-```python
-from .base import BaseDetector, PackageEntry
-
-class MyManagerDetector(BaseDetector):
-    name = "mymanager"
-
-    def detect(self) -> list[PackageEntry]:
-        # run CLI, parse output, return list of PackageEntry
-        ...
-
-    def uninstall(self, package: str) -> tuple[bool, str]:
-        # run uninstall command, return (success, output)
-        ...
-```
-
-Then register it in `src/detectors/__init__.py`.
 
 ---
 

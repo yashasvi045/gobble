@@ -1,0 +1,6 @@
+{
+  "npm": [],
+  "pip": ["pip", "setuptools", "wheel", "distlib"],
+  "cargo": [],
+  "gem": ["bundler", "rdoc", "rake"]
+}
