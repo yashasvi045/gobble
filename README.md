@@ -1,8 +1,9 @@
 # Gobble
 
-> A cross-platform GUI tool to detect and remove globally installed packages, because all dependencies should live in project-scoped environments.
+<img src="gobble.svg" alt="gobble-icon" width="100" height="100">
 
----
+A cross-platform GUI tool to detect and remove globally installed packages, because all dependencies should live in project-scoped environments.
+
 
 ## Why?
 
@@ -16,8 +17,6 @@ Over time, developers accumulate a graveyard of globally installed packages that
 
 **Gobble scans your machine, shows you what's globally installed, and lets you remove it — with a single click.**
 
----
-
 ## Supported Package Managers
 
 | Manager | Lists via | Uninstalls via |
@@ -27,8 +26,6 @@ Over time, developers accumulate a graveyard of globally installed packages that
 | **cargo** | `cargo install --list` | `cargo uninstall <pkg>` |
 | **gem** | `gem list` | `gem uninstall <pkg>` |
 
----
-
 ## Tech Stack
 
 | Layer | Technology |
@@ -37,7 +34,6 @@ Over time, developers accumulate a graveyard of globally installed packages that
 | GUI | [CustomTkinter](https://github.com/TomSchimansky/CustomTkinter) |
 | Packaging | [PyInstaller](https://pyinstaller.org/) |
 
----
 
 ## Platform Support
 
@@ -47,7 +43,6 @@ Over time, developers accumulate a graveyard of globally installed packages that
 | macOS | ✅ Supported |
 | Linux | ✅ Supported |
 
----
 
 ### Prerequisites
 
@@ -63,8 +58,6 @@ pip install -r requirements.txt
 python main.py
 ```
 
----
-
 ## Usage
 
 1. Launch **Gobble**
@@ -73,39 +66,6 @@ python main.py
 4. Check the packages you want to remove
 5. Click **Uninstall Selected**
 6. Watch the output log for progress and confirmation
-
----
-
-## Project Structure
-
-```
-gobble/
-├── main.py
-├── requirements.txt
-├── gobble.spec
-├── protected.json
-├── assets/
-│   ├── gobbleicon.ico
-│   ├── gobbleicon.png
-│   ├── gobble_theme.json
-│   └── fonts/
-└── src/
-    ├── app.py
-    ├── uninstaller.py
-    ├── cache.py
-    ├── protected.py
-    ├── font_loader.py
-    ├── version.py
-    └── detectors/
-        ├── base.py
-        ├── process.py
-        ├── npm.py
-        ├── pip.py
-        ├── cargo.py
-        └── gem.py
-```
-
----
 
 ## License
 
